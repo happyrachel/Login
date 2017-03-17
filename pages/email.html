@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>邮箱注册</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			position: relative;
+			width: 530px;
+			margin: 0 auto;
+		}
+		.zhuce{
+			width: 145px;
+			overflow: hidden;
+			position: absolute;
+			top:-30px;
+		}
+		a{
+			display: block;
+			text-decoration: none;
+			width: 70px;
+			line-height: 30px;
+			background-color: #eaeaea;
+			float: left;
+			font-size: 16px;
+			color:black;
+			border: 1px solid #ccc;
+		}
+		.mailzhuce{
+			border-left: 0;
+			border-bottom: 0;
+		}
+		.box{
+			width: 530px;
+			height: 338px;
+			padding-top: 10px;
+			margin-top: 60px;
+			background-color:#eaeaea;
+			overflow: hidden;
+		}
+		label{
+			width: 70px;
+			line-height: 30px;
+			font-size: 14px;
+			margin-left: 10px;
+			margin-right: 30px;
+			float: left;
+		}
+		input{
+			float: left;
+			height: 25px;
+		}
+		p{
+			float: left;
+			line-height: 25px;
+			margin-left:20px;
+			font-size: 12px;
+			color:#858585;
+		}
+		span{
+			font-size: 12px;
+			color:blue;
+		}
+		.submit{
+			width: 100px;
+			line-height: 30px;
+			font-size: 20px;
+			margin-left: 200px;
+			background-color: #319ef4;
+		}
+		.xieyi{
+			margin-left: 110px;
+		}
+		.active{
+			color:red;
+		}
+		.active2{
+			color:green;
+			font-size: 16px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="zhuce">
+			<a class="mailzhuce" href="email.html">邮箱注册</a>
+			<a href="../index.html">手机注册</a>
+		</div>
+		<div class="box">
+			<label for="">电子邮箱</label>
+			<input type="text" value="" class="mail">
+			<p>请输入您常用的邮箱</p>
+			<br>
+			<br>
+			<label for="">密码</label>
+			<input type="password" value="" class="mima1">
+			<p>6-20位字符，不能使用空格注册帐号</p>
+			<br>
+			<br>
+			<label for="">确认密码</label>
+			<input type="password" value="" class="mima2">
+			<p></p>
+			<br>
+			<br>
+			<label for="">图形验证码</label>
+			<input type="text" value="" class="yanzhengma">
+			<p>请输入验证码</p>
+			<br>
+			<br>
+			<input class="xieyi" type="checkbox" value="">
+			<p>我已阅读并同意<span class="blue">《凤凰使用协议》</span></p>
+			<br>
+			<br>
+			<button class="submit">提交注册</button>
+		</div>
+	</div>
+	<script src="js/jquery-3.0.0.js"></script>
+	<script>
+		$(".mail").blur(function(){
+				var re=/^[0-9a-zA-z][_0-9A-z]{3,20}@(qq|sina|163|soho).(com|cn|com.cn)$/;
+			    var txt=$(this).val();
+				if (re.exec(txt)){
+					$("div p:nth-child(3)").text("√").addClass("active2");
+				} else{
+					$("div p:nth-child(3)").text("×请输入邮箱").addClass("active").removeClass("active2");
+				};
+			})
+			$(".mail").click(function(){
+				$("div p:nth-child(3)").text("请输入您常用的邮箱").removeClass("active").removeClass("active2");
+			})
+		$(".mima1").blur(function(){
+			var re1=/\S{6,20}$/;
+		    var txt2=$(this).val();
+			if (re1.exec(txt2)) {
+				$("div p:nth-child(8)").text("√").addClass("active2")
+			} else{
+				$("div p:nth-child(8)").text("×密码格式不正确").addClass("active").removeClass("active2");
+			};
+		})
+		$(".mima1").click(function(){
+			$("div p:nth-child(8)").text("6-20位字符，不能使用空格注册帐号").removeClass("active").removeClass("active2");
+		})
+		$(".mima2").blur(function(){
+			var txt3=$(".mima1").val()
+			var txt4=$(this).val()
+			if (txt3==txt4) {
+				$("div p:nth-child(13)").text("√").addClass("active2");
+			} else{
+				$("div p:nth-child(13)").text("×请确认密码").addClass("active").removeClass("active2");
+			};
+		})
+		$(".mima2").click(function(){
+			$("div p:nth-child(13)").text("").removeClass("active").removeClass("active2");
+		})
+		$(".yanzhengma").blur(function(){
+			$("div p:nth-child(18)").addClass("active");
+		})
+		$(".yanzhengma").click(function(){
+			$("div p:nth-child(18)").removeClass("active");
+		})
+	</script>
+</body>
+</html>
